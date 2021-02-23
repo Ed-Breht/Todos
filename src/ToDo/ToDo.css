@@ -77,6 +77,8 @@ h1 {
     margin-left: 5px;
     margin-right: 5px;
     gap: 5px;
+    position: sticky;
+    bottom: 10px;
 
 }
 .flex input{
@@ -88,6 +90,8 @@ h1 {
 .ListWrapper{
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
+
 }
 .List{
     max-width: 1000px;
