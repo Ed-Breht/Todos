@@ -18,8 +18,9 @@ const ToDo= () => {
        }
 
        const addTask = ()=>{
+        if (name !== ''){
            setTodos(prev => [...prev, {_id: todos.length, name: name, isChecked: false}])
-           setName('')
+           setName('')}
        }
 
        const toggleCheckedToDo = idx => {
@@ -56,7 +57,7 @@ const ToDo= () => {
             onKeyPress={onKeyPressNameHandler}
             className="InputToDo"
             />
-            <button className='skipp-item' onClick={addTask}>Дабавить</button>
+            <button className='skipp-item' onClick={addTask}>Добавить</button>
             </div>
             </div>
             </div>
