@@ -1,17 +1,39 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import ToDoItem from "./ToDoItem";
 import  './ToDo.css'
 
 const ToDo= () => {
     const [name, setName] = useState('')
-    const [todos, setTodos] = useState([
-        {_id: 0,
-        name: 'Добавить задачу',
-        isChecked: false}
-        ]
-    )
+    const [todos, setTodos] = useState([])
 
-       const onKeyPressNameHandler =e =>{
+    const [dbConnect, setDbConnect] = useState(null);
+
+    useEffect(() => {
+        let openRequest = indexedDB.open("store", 1);
+        openRequest.onupgradeneeded = (event)=>{
+            let dbConnect = event.target.result
+            let todosStore = dbConnect.createObjectStore('todos',{keyPath: 'id'})
+            todosStore.add({id: 'todosArr', arr: [{_id: 0, name: 'Добавить задачу', isChecked: false}]})
+            setDbConnect(dbConnect)
+        }
+        openRequest.onerror = function() {
+            console.error("Error", openRequest.error);
+        };
+
+        openRequest.onsuccess = function() {
+            let dbConnect = openRequest.result;
+            // продолжить работу с базой данных, используя объект db
+            const transaction = dbConnect.transaction('todos','readonly')
+            const todosStore = transaction.objectStore('todos')
+            todosStore.get('todosArr').onsuccess = (event)=>{
+                setTodos(event.target?.result.arr || [])
+            }
+            setDbConnect(dbConnect)
+        };
+    }, []);
+
+
+    const onKeyPressNameHandler =e =>{
            if(e.key === 'Enter') {
                addTask();
            }
@@ -19,7 +41,7 @@ const ToDo= () => {
 
        const addTask = ()=>{
         if (name !== ''){
-           setTodos(prev => [...prev, {_id: todos.length, name: name, isChecked: false}])
+           setTodos(prev => [...prev, {_id: todos.length + name, name: name, isChecked: false}])
            setName('')}
        }
 
@@ -29,6 +51,13 @@ const ToDo= () => {
            setTodos(newArray)
        }
 
+    useEffect(() => {
+        if(dbConnect){
+            const transaction = dbConnect.transaction('todos','readwrite')
+            const todosStore = transaction.objectStore('todos')
+            todosStore.put({id:'todosArr', arr: todos})
+        }
+    }, [todos]);
 
     return (
         <div className="ListWrapper">
