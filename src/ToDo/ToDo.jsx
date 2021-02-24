@@ -5,7 +5,6 @@ import  './ToDo.css'
 const ToDo= () => {
     const [name, setName] = useState('')
     const [todos, setTodos] = useState([])
-
     const [dbConnect, setDbConnect] = useState(null);
 
     useEffect(() => {
@@ -86,7 +85,7 @@ const ToDo= () => {
             onKeyPress={onKeyPressNameHandler}
             className="InputToDo"
             />
-            <button className='skipp-item' onClick={addTask}>Добавить</button>
+            <button className='skipp-item' onClick={addTask}>+</button>
             </div>
             </div>
             </div>
