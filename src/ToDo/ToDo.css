@@ -59,7 +59,7 @@ h1 {
 .skipp-item{
     border-radius: 40px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
-    padding: 1px 15px;
+    padding: 1px 16px;
     border: none;
     outline: none;
     height: 50px;
@@ -67,7 +67,7 @@ h1 {
     background-color: white;
     font-weight: 400;
     font-size: 30px;
-
+    -webkit-user-select: none;
 }
 
 .content{
