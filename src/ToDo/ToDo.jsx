@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ToDoItem from "./ToDoItem";
 import  './ToDo.css'
+import AddBut from '../images/pngwing.com.png'
 
 const ToDo= () => {
     const [name, setName] = useState('')
@@ -85,7 +86,8 @@ const ToDo= () => {
             onKeyPress={onKeyPressNameHandler}
             className="InputToDo"
             />
-            <button className='skipp-item' onClick={addTask}>+</button>
+            <button className='skipp-item' onClick={addTask}><img className='AddImg' src={AddBut}/>
+            </button>
             </div>
             </div>
             </div>

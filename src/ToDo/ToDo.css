@@ -100,3 +100,15 @@ h1 {
     max-width: 1000px;
     flex: 1 1 auto
 }
+
+.del{
+    width: 20px;
+    height: 20px;
+    padding-top: 4px;
+}
+
+.AddImg{
+    width: 20px;
+    height: 20px;
+    padding-top: 4px;
+}
