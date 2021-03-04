@@ -8,7 +8,8 @@ const ToDoItem = (props) => {
         <div onClick={() => props.toggleCheckedToDo(props.idx)} className='todo-item'>
             <span style={{fontSize:'20px', marginLeft: '5px'}}>{props.isChecked ? "✓" : "▢"}</span>
             <span className= {props.isChecked ?'name todo-item__done' : 'name'}>{props.name}</span>
-            <span><button onClick={props.onRemove}><img className='del' src={Del}/>
+            <span><button onClick={props.onRemove}>
+                <img className='del' src={Del}/>
             </button>
             </span>
         </div>
